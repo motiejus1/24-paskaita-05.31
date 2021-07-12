@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 paskaita</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        //Objektai
+
+        // Zmogus arba 
+        // automobilis
+
+        var kintamasis = 5;
+        var tekstas = "tekstas";
+
+        var zmogus = {
+            vardas: "Vardenis",
+            pavarde: "Pavardenis",
+            amzius: 35
+        };
+
+        var zmogus1 = {
+            vardas: "Vardenis",
+            "vardas-kategorizuota" : "Vardenis1",
+            pavarde: "Pavardenis1",
+            amzius: 37
+        };
+
+        console.log(zmogus);
+        console.log(zmogus1);
+
+        // console.log(zmogus.vardas);
+        // console.log(zmogus.pavarde);
+        // console.log(zmogus.amzius);
+
+        // console.log(zmogus["vardas"]);
+        // console.log(zmogus["pavarde"]);
+        // console.log(zmogus["amzius"]);
+
+        // console.log(zmogus1["vardas-kategorizuota"]);
+
+        // console.log(zmogus1.vardas);
+        // console.log(zmogus1.pavarde);
+        // console.log(zmogus1.amzius);
+
+        zmogus.vardas = "pakeistas";
+        zmogus.pavarde = "pakeista pavarde";
+        zmogus.amzius = "82";
+
+        zmogus1.vardas = "pakeistas vardas";
+
+        console.log(zmogus);
+    </script>
+</body>
+</html>

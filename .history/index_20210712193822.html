@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 paskaita</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        //Objektai
+
+        // Zmogus arba 
+        // automobilis
+
+        var kintamasis = 5;
+        var tekstas = "tekstas";
+
+        var zmogus = {
+            vardas: "Vardenis",
+            pavarde: "Pavardenis",
+            amzius: 35
+        };
+
+        var zmogus1 = {
+            vardas: "Vardenis",
+            "vardas-kategorizuota" : "Vardenis1",
+            pavarde: "Pavardenis1",
+            amzius: 37
+        };
+
+        console.log(zmogus);
+        console.log(zmogus1);
+
+        // console.log(zmogus.vardas);
+        // console.log(zmogus.pavarde);
+        // console.log(zmogus.amzius);
+
+        // console.log(zmogus["vardas"]);
+        // console.log(zmogus["pavarde"]);
+        // console.log(zmogus["amzius"]);
+
+        // console.log(zmogus1["vardas-kategorizuota"]);
+
+        // console.log(zmogus1.vardas);
+        // console.log(zmogus1.pavarde);
+        // console.log(zmogus1.amzius);
+
+        zmogus.vardas = "pakeistas";
+        zmogus.pavarde = "pakeista pavarde";
+        zmogus.amzius = "82";
+
+        zmogus1.vardas = "pakeistas vardas";
+        
+        zmogus.asmensKodas = "123456789";
+        zmogus1["asmensKodas"] = "987654321";
+
+        var tekstas1 = "tekstas";
+
+
+        //galim
+        zmogus.asmensKodas = tekstas1;
+        zmogus1.asmensKodas = zmogus.asmensKodas;
+
+
+        console.log(zmogus);
+        console.log(zmogus1);
+
+        var zmogus2 = {
+            vardas: "vardenis2",
+            pavarde: "Pavardenis2",
+            amzius: 37,
+            // Objekto prisistatymo metodas, kuris grazina varda ir pavarde
+            prisistatyk : function() {
+                var vardasPavarde =  this.vardas+" "+ this.pavarde + " " + zmogus.vardas;
+                return vardasPavarde;
+            },
+
+            perdavimas: function(skaicius) {
+                return skaicius*2;
+            },
+
+            isvesk: function() {
+                console.log(this.vardas + " " + this.pavarde);
+            }
+        }
+
+        console.log( zmogus2.prisistatyk() );
+        console.log( zmogus2.perdavimas(80) );
+
+        zmogus2.isvesk();
+
+
+
+        // Dvieju trupmenu sudetis.
+
+        // var trupmena = [1, 1, 2];
+        var trupmena = {
+            sveikajaDali : 1,
+            skaitiklis: 1,
+            vardiklis: 2,
+            virskNetaisyklinga: function() {
+                if(this.sveikajaDali > 0 || this.skaitiklis > this.vardiklis) {
+                    this.skaitiklis = this.sveikajaDali * this.vardiklis + this.skaitiklis;
+                    this.sveikajaDali = 0;
+                }
+            },
+
+            virskTaisyklinga: function() {
+                this.sveikajaDali = parseInt(this.skaitiklis / this.vardiklis);
+                this.skaitiklis = this.skaitiklis % this.vardiklis;
+            }
+        }
+
+        var trupmena1 = {
+            sveikajaDali : 4,
+            skaitiklis: 1,
+            vardiklis: 5,
+            virskNetaisyklinga: function() {
+                if(this.sveikajaDali > 0 || this.skaitiklis > this.vardiklis) {
+                    this.skaitiklis = this.sveikajaDali * this.vardiklis + this.skaitiklis;
+                    this.sveikajaDali = 0;
+                }
+            },
+
+            virskTaisyklinga: function() {
+                this.sveikajaDali = parseInt(this.skaitiklis / this.vardiklis);
+                this.skaitiklis = this.skaitiklis % this.vardiklis;
+            }
+        }
+
+
+        //Bendravardiklint
+        //Sudet
+        //
+        console.log(trupmena);
+        trupmena.virskNetaisyklinga();
+        console.log(trupmena);
+        trupmena.virskTaisyklinga();
+        console.log(trupmena);
+
+
+        // console.log(trupmena1);
+        // trupmena1.virskNetaisyklinga();
+        // console.log(trupmena1);
+        //  var trupmena1 = {
+        //     sveikajaDali : 1,
+        //     skaitiklis: 1,
+        //     vardiklis: 4,
+        //     virskNetaisyklinga:
+        //  }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 paskaita</title>
+</head>
+<body>
+    <div class="trupmena">
+        <input type="text" id="sveikojiDalis" name="sveikojiDalis">
+        <input type="text" id="skaitiklis" name="skaitiklis">
+        <input type="text" id="vardiklis" name="vardiklis">
+    </div>
+
+    <div class="trupmena1">
+        <input type="text" id="sveikojiDalis1" name="sveikojiDalis1">
+        <input type="text" id="skaitiklis1" name="skaitiklis1">
+        <input type="text" id="vardiklis1" name="vardiklis1">
+    </div>
+
+    <button class="patvirtinti">Skaiciuoti</button>
+
+    <input type="text" id="rezultatas" disabled=true/>
+    <script>
+        "use strict";
+        //Objektai
+
+        // Zmogus arba 
+        // automobilis
+
+        var kintamasis = 5;
+        var tekstas = "tekstas";
+
+        var zmogus = {
+            vardas: "Vardenis",
+            pavarde: "Pavardenis",
+            amzius: 35
+        };
+
+        var zmogus1 = {
+            vardas: "Vardenis",
+            "vardas-kategorizuota" : "Vardenis1",
+            pavarde: "Pavardenis1",
+            amzius: 37
+        };
+
+        console.log(zmogus);
+        console.log(zmogus1);
+
+        // console.log(zmogus.vardas);
+        // console.log(zmogus.pavarde);
+        // console.log(zmogus.amzius);
+
+        // console.log(zmogus["vardas"]);
+        // console.log(zmogus["pavarde"]);
+        // console.log(zmogus["amzius"]);
+
+        // console.log(zmogus1["vardas-kategorizuota"]);
+
+        // console.log(zmogus1.vardas);
+        // console.log(zmogus1.pavarde);
+        // console.log(zmogus1.amzius);
+
+        zmogus.vardas = "pakeistas";
+        zmogus.pavarde = "pakeista pavarde";
+        zmogus.amzius = "82";
+
+        zmogus1.vardas = "pakeistas vardas";
+        
+        zmogus.asmensKodas = "123456789";
+        zmogus1["asmensKodas"] = "987654321";
+
+        var tekstas1 = "tekstas";
+
+
+        //galim
+        zmogus.asmensKodas = tekstas1;
+        zmogus1.asmensKodas = zmogus.asmensKodas;
+
+
+        console.log(zmogus);
+        console.log(zmogus1);
+
+        var zmogus2 = {
+            vardas: "vardenis2",
+            pavarde: "Pavardenis2",
+            amzius: 37,
+            // Objekto prisistatymo metodas, kuris grazina varda ir pavarde
+            prisistatyk : function() {
+                var vardasPavarde =  this.vardas+" "+ this.pavarde + " " + zmogus.vardas;
+                return vardasPavarde;
+            },
+
+            perdavimas: function(skaicius) {
+                return skaicius*2;
+            },
+
+            isvesk: function() {
+                console.log(this.vardas + " " + this.pavarde);
+            }
+        }
+
+        console.log( zmogus2.prisistatyk() );
+        console.log( zmogus2.perdavimas(80) );
+
+        zmogus2.isvesk();
+
+
+
+        // Dvieju trupmenu sudetis.
+
+        document.querySelector(".patvirtinti").addEventListener("click",function() {
+            var sveikojiDalis = parseFloat(document.querySelector("#sveikojiDalis").value);
+            var skaitiklis = parseFloat(document.querySelector("#skaitiklis").value);
+            var vardiklis = parseFloat(document.querySelector("#vardiklis").value);
+            var sveikojiDalis1 = parseFloat(document.querySelector("#sveikojiDalis1").value);
+            var skaitiklis1 = parseFloat(document.querySelector("#skaitiklis1").value);
+            var vardiklis1 = parseFloat(document.querySelector("#vardiklis1").value);
+            
+            
+
+            var trupmena = {
+                sveikajaDali : 4,
+                skaitiklis: 10,
+                vardiklis: 50,
+            // sveikajaDali : sveikojiDalis,
+            // skaitiklis: skaitiklis,
+            // vardiklis: vardiklis,
+
+            paleidimas: function(sveikojiDalis, skaitiklis, vardiklis) {
+                this.sveikajaDali = sveikojiDalis;
+                this.skaitiklis = skaitiklis;
+                this.vardiklis = vardiklis;
+            },
+
+            virskNetaisyklinga: function() {
+                if(this.sveikajaDali > 0 || this.skaitiklis > this.vardiklis) {
+                    this.skaitiklis = this.sveikajaDali * this.vardiklis + this.skaitiklis;
+                    this.sveikajaDali = 0;
+                }
+            },
+
+            virskTaisyklinga: function() {
+                this.sveikajaDali = parseInt(this.skaitiklis / this.vardiklis);
+                this.skaitiklis = this.skaitiklis % this.vardiklis;
+            },
+            //perduoti nieko nereikia
+            susipaprastink: function() {
+                var a = this.skaitiklis; // 9
+                var b = this.vardiklis; // 18
+
+                while(a > 0 && b > 0) {
+                    if(a > b) {
+                        a = a % b;  // didziausiuBendruDalikliu
+                    } else {
+                        b = b % a; // 0
+                    }
+                }
+
+                var dbd = a + b; // didziausiuBendruDalikliu
+
+                this.skaitiklis /= dbd;
+                this.vardiklis /= dbd;
+            }
+        }
+
+
+            var trupmena1 = {
+                sveikajaDali : 4,
+                skaitiklis: 10,
+                vardiklis: 50,
+                // sveikajaDali : sveikojiDalis1,
+                // skaitiklis: skaitiklis1,
+                // vardiklis: vardiklis1,
+
+                paleidimas: function(sveikojiDalis, skaitiklis, vardiklis) {
+                    this.sveikajaDali = sveikojiDalis;
+                    this.skaitiklis = skaitiklis;
+                    this.vardiklis = vardiklis;
+                },
+                virskNetaisyklinga: function() {
+                    if(this.sveikajaDali > 0 || this.skaitiklis > this.vardiklis) {
+                        this.skaitiklis = this.sveikajaDali * this.vardiklis + this.skaitiklis;
+                        this.sveikajaDali = 0;
+                    }
+                },
+
+                virskTaisyklinga: function() {
+                    this.sveikajaDali = parseInt(this.skaitiklis / this.vardiklis);
+                    this.skaitiklis = this.skaitiklis % this.vardiklis;
+                },
+                susipaprastink: function() {
+                    var a = this.skaitiklis; // 9
+                    var b = this.vardiklis; // 18
+
+                    while(a > 0 && b > 0) {
+                        if(a > b) {
+                            a = a % b;  // didziausiuBendruDalikliu
+                        } else {
+                            b = b % a; // 0
+                        }
+                    }
+
+                    var dbd = a + b; // didziausiuBendruDalikliu
+
+                    this.skaitiklis /= dbd;
+                    this.vardiklis /= dbd;
+                }
+            }
+
+            //Objekto reiksmiu priskyrimas
+            // trupmena.sveikajaDali = sveikojiDalis;
+            // trupmena.skaitiklis = skaitiklis;
+            // trupmena.vardiklis = vardiklis;
+
+            // trupmena1.sveikajaDali = sveikojiDalis1;
+            // trupmena1.skaitiklis = skaitiklis1;
+            // trupmena1.vardiklis = vardiklis1;
+
+
+
+        //Turim 2 trupmenas +
+        //Verciam jas i netaisyklingas +
+        //Bendravardiklint
+        //Sudet
+        // Sukurti funkcija, kuri supaprastina trupmena
+
+        trupmena.paleidimas(sveikojiDalis, skaitiklis, vardiklis);    
+        trupmena1.paleidimas(sveikojiDalis1, skaitiklis1, vardiklis1);
+
+
+        trupmena.virskNetaisyklinga();
+        trupmena1.virskNetaisyklinga();
+
+        trupmena.susipaprastink();
+        trupmena1.susipaprastink();
+
+        //[0] [1] [2]
+
+        //skaitikliu reiksmes
+        trupmena.skaitiklis = trupmena.skaitiklis * trupmena1.vardiklis;
+        trupmena1.skaitiklis = trupmena1.skaitiklis * trupmena.vardiklis;
+
+        //Bendras vardiklis
+        trupmena.vardiklis = trupmena.vardiklis * trupmena1.vardiklis;
+        trupmena1.vardiklis = trupmena.vardiklis;
+
+        //Kur patalpinti sumos rezultata?
+        var trupmenuSuma = {
+            sveikajaDali : 0,
+            skaitiklis: 0,
+            vardiklis: 0,
+            virskNetaisyklinga: function() {
+                if(this.sveikajaDali > 0 || this.skaitiklis > this.vardiklis) {
+                    this.skaitiklis = this.sveikajaDali * this.vardiklis + this.skaitiklis;
+                    this.sveikajaDali = 0;
+                }
+            },
+
+            virskTaisyklinga: function() {
+                this.sveikajaDali = parseInt(this.skaitiklis / this.vardiklis);
+                this.skaitiklis = this.skaitiklis % this.vardiklis;
+            },
+            susipaprastink: function() {
+                var a = this.skaitiklis; // 9
+                var b = this.vardiklis; // 18
+
+                while(a > 0 && b > 0) {
+                    if(a > b) {
+                        a = a % b;  // didziausiuBendruDalikliu
+                    } else {
+                        b = b % a; // 0
+                    }
+                }
+
+                var dbd = a + b; // didziausiuBendruDalikliu
+
+                this.skaitiklis /= dbd;
+                this.vardiklis /= dbd;
+            }
+        }
+        
+        trupmenuSuma.skaitiklis = trupmena.skaitiklis + trupmena1.skaitiklis;
+        // trupmenuSuma.vardiklis = trupmena.vardiklis;
+        trupmenuSuma.vardiklis = trupmena1.vardiklis;
+        
+        console.log(trupmena);
+        console.log(trupmena1);
+
+        trupmenuSuma.virskTaisyklinga();
+        trupmenuSuma.susipaprastink();
+
+        console.log(trupmenuSuma);
+
+
+        console.log(trupmena.skaitiklis);
+        console.log(trupmena1.skaitiklis)
+        // console.log(trupmena1);
+        // trupmena1.virskNetaisyklinga();
+        // console.log(trupmena1);
+        //  var trupmena1 = {
+        //     sveikajaDali : 1,
+        //     skaitiklis: 1,
+        //     vardiklis: 4,
+        //     virskNetaisyklinga:
+        //  }
+        
+        
+        
+        
+        });
+
+        // var trupmena = [1, 1, 2];
+
+    </script>
+</body>
+</html>
